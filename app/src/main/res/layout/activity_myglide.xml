@@ -5,14 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".myglide.MyGlideActivity">
 
     <Button
-        android:id="@+id/btn_myglide"
+        android:id="@+id/btn_load_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="仿Glide图片加载框架"
-        android:onClick="click_myglide"
+        android:text="加载图片"
+        android:onClick="loadImage"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         />
 
 </LinearLayout>
