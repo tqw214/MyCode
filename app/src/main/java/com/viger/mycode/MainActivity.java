@@ -8,16 +8,60 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.viger.mycode.myglide.MyGlideActivity;
+import com.viger.mycode.retrofit.Api;
+
+import java.util.List;
+
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btn_myglide;
+    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn_myglide = findViewById(R.id.btn_myglide);
+
+        retrofitAndRxJava();
+
+    }
+
+    private void retrofitAndRxJava() {
+        Retrofit retrofit = new Retrofit
+                                .Builder()
+                                .baseUrl("https://api.github.com/")
+                                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+        Api api = retrofit.create(Api.class);
+        api.getResponse("username")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<List<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onSuccess(List<String> strings) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
     }
 
     public void click_myglide(View view) {
@@ -25,4 +69,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!disposable.isDisposed())
+            disposable.dispose();
+    }
 }
