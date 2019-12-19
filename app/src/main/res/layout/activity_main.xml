@@ -7,12 +7,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_myglide"
+    <com.viger.mycode.view.MyCustomView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="仿Glide图片加载框架"
-        android:onClick="click_myglide"
+        android:layout_height="match_parent"
         />
 
 </LinearLayout>
