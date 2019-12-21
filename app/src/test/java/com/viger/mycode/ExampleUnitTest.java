@@ -30,7 +30,6 @@ public class ExampleUnitTest {
 //        }
 //        System.out.println("this result = " + result);
 
-
         //int result = add(6);
         //System.out.println("this result = " + result);
 
@@ -63,7 +62,6 @@ public class ExampleUnitTest {
             }
         }
     }
-
 
 
 }
