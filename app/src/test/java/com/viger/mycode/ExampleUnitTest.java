@@ -35,8 +35,26 @@ public class ExampleUnitTest {
 
         //files(new File("D:\\BaiduYunDownload"));
 
-        paixu01();
+       // paixu01();
 
+        //testHttp();
+
+    }
+
+    @Test
+    public void testHttp() {
+        HttpUtils.init(new VolleyRequest());
+        HttpUtils.getInstance().get("", null, new HttpUtils.HttpCallBack<ResultBean>() {
+            @Override
+            public void success(ResultBean resultBean) {
+
+            }
+
+            @Override
+            public void failed(String message) {
+
+            }
+        });
     }
 
     public void paixu01() {
@@ -61,6 +79,11 @@ public class ExampleUnitTest {
                 files(f);
             }
         }
+    }
+
+    class ResultBean {
+        String name;
+        String value;
     }
 
 
