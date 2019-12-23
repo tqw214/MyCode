@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.viger.mycode.myglide.MyGlideActivity;
 import com.viger.mycode.retrofit.Api;
+import com.viger.mycode.utils.CheckNet;
 
 import java.util.List;
 
@@ -33,7 +34,12 @@ public class MainActivity extends AppCompatActivity {
         //btn_myglide = findViewById(R.id.btn_myglide);
 
         //retrofitAndRxJava();
+        doSomethingWithNetWork();
+    }
 
+    @CheckNet
+    private void doSomethingWithNetWork() {
+        System.out.println("有网络了，可以做事了。。。。。");
     }
 
     private void retrofitAndRxJava() {
