@@ -42,6 +42,15 @@ public class ExampleUnitTest {
     }
 
     @Test
+    public void testAop() {
+
+    }
+
+    private void showAopMessage() {
+        System.out.println("showAopMessage");
+    }
+
+    @Test
     public void testHttp() {
         HttpUtils.init(new VolleyRequest());
         HttpUtils.getInstance().get("", null, new HttpUtils.HttpCallBack<ResultBean>() {
