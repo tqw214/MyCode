@@ -46,6 +46,7 @@ public class ExampleUnitTest {
 
     }
 
+    @CheckNet
     private void showAopMessage() {
         System.out.println("showAopMessage");
     }
