@@ -10,13 +10,12 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.viger.mycode.annotation.ViewById;
-import com.viger.mycode.annotation.ViewUtils;
 import com.viger.mycode.base.BaseActivity;
 import com.viger.mycode.myglide.MyGlideActivity;
 import com.viger.mycode.retrofit.Api;
@@ -26,6 +25,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -39,25 +42,35 @@ public class MainActivity extends BaseActivity {
     //private Button btn_myglide;
     //private Disposable disposable;
     //private Intent intent = null;
-    @ViewById(R.id.tv)
-    private TextView mTextView;
+    //@ViewById(R.id.tv)
+    @BindView(R.id.tv)
+    public TextView mTextView;
+    private Unbinder bind;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewUtils.inject(this);
+        //ViewUtils.inject(this);
         //btn_myglide = findViewById(R.id.btn_myglide);
+        bind = ButterKnife.bind(this);
 
         //retrofitAndRxJava();
         //doSomethingWithNetWork();
         //checkPermission();
         //Intent intent = new Intent(this, UserInfoService.class);
         //startService(intent);
-        mTextView.setText("ioc显示的文字");
+        mTextView.setText("butterknife显示的文字");
         //mTextView = ViewUtils.findById(R.id.tv, this);
         //startActivityForBase(MainActivity.class);
         //startActivityForBase2(Activity.class);
+
+    }
+
+    @OnClick(R.id.tv)
+    public void clickTextView(View v) {
+        Toast.makeText(this, "butterknife绑定的点击事件", Toast.LENGTH_SHORT).show();
     }
 
     private void wirteFileToSdCard() throws Exception{
@@ -157,6 +170,6 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         //stopService(intent);
-
+        bind.unbind();
     }
 }
