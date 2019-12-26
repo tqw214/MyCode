@@ -7,9 +7,18 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.viger.mycode.view.MyCustomView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+<!--    <com.viger.mycode.view.MyTextView-->
+<!--        android:id="@+id/myTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:text="Darkeen"-->
+<!--        app:textColor="@color/colorAccent"-->
+<!--        />-->
 
 </LinearLayout>

@@ -9,16 +9,17 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.viger.mycode.annotation.ViewById;
+import com.viger.mycode.annotation.ViewUtils;
+import com.viger.mycode.base.BaseActivity;
 import com.viger.mycode.myglide.MyGlideActivity;
 import com.viger.mycode.retrofit.Api;
-import com.viger.mycode.service.UserInfoService;
 import com.viger.mycode.utils.CheckNet;
 
 import java.io.File;
@@ -33,24 +34,30 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private Button btn_myglide;
-    private Disposable disposable;
-    private Intent intent = null;
+    //private Button btn_myglide;
+    //private Disposable disposable;
+    //private Intent intent = null;
+    @ViewById(R.id.tv)
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ViewUtils.inject(this);
         //btn_myglide = findViewById(R.id.btn_myglide);
 
         //retrofitAndRxJava();
         //doSomethingWithNetWork();
         //checkPermission();
-        Intent intent = new Intent(this, UserInfoService.class);
-        startService(intent);
-
+        //Intent intent = new Intent(this, UserInfoService.class);
+        //startService(intent);
+        mTextView.setText("ioc显示的文字");
+        //mTextView = ViewUtils.findById(R.id.tv, this);
+        //startActivityForBase(MainActivity.class);
+        //startActivityForBase2(Activity.class);
     }
 
     private void wirteFileToSdCard() throws Exception{
@@ -126,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new SingleObserver<List<String>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        disposable = d;
+                        //disposable = d;
                     }
 
                     @Override

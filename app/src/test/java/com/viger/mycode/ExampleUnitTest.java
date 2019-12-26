@@ -3,6 +3,7 @@ package com.viger.mycode;
 import org.junit.Test;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -42,7 +43,17 @@ public class ExampleUnitTest {
     }
 
     @Test
+    public void testFangshe() throws IllegalAccessException, NoSuchFieldException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        new Fangshe();
+    }
+
+
+//   1000 = 8
+    @Test
     public void testAop() {
+        int i = 2 << 2;
+        System.out.println(i);
+        System.out.println(Integer.toBinaryString(i));
 
     }
 
