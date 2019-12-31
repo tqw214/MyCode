@@ -3,7 +3,7 @@ package com.viger.mycode.handle;
 public class Loop {
 
     private static final ThreadLocal<Loop> mThreadLocalForLoop = new ThreadLocal<Loop>();
-    public static MessageQueue messageQueue;
+    public MessageQueue messageQueue;
 
     private Loop() {
         messageQueue = new MessageQueue();
@@ -23,10 +23,18 @@ public class Loop {
     }
 
     public static void loop() {
+        final Loop me = myLoop();
+        if(me == null) {
+            throw new RuntimeException("no looper");
+        }
+        MessageQueue queue = me.messageQueue;
         for(;;) {
-            Message next = messageQueue.next();
-            if(next != null) {
-                next.target.dispatchMessage(next);
+            Message msg = queue.next();// 阻塞线程
+            if(msg == null) {
+                return;
+            }
+            if(msg != null) {
+                msg.target.dispatchMessage(msg);
             }
         }
     }

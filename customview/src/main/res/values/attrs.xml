@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyTextView">
+        
+        <attr name="MyTextView_text" format="string"></attr>
+        <attr name="MyTextView_textColor" format="color"></attr>
+        <attr name="MyTextView_textSize" format="dimension"></attr>
+        <attr name="MyTextView_maxLength" format="integer"></attr>
+        <attr name="MyTextView_backGround" format="reference|color"></attr>
+
+        <attr name="MyTextView_inputType">
+            <enum name="number" value="1"></enum>
+            <enum name="text" value="2"></enum>
+            <enum name="password" value="3"></enum>
+        </attr>
+        
+    </declare-styleable>
+
+</resources>

@@ -1,4 +1,4 @@
-package com.viger.mycode.view;
+package com.viger.customview.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,7 +14,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.viger.mycode.R;
+import com.viger.customview.R;
+
 
 public class MyTextView extends View {
 
@@ -37,23 +38,18 @@ public class MyTextView extends View {
         super(context, attrs, defStyleAttr);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyTextView);
-        mText = typedArray.getString(R.styleable.MyTextView_text);
-        mTextColor = typedArray.getColor(R.styleable.MyTextView_textColor, mTextColor);
-        mTextSize = typedArray.getDimensionPixelSize(R.styleable.MyTextView_textSize, mTextSize);
-
-
+        mText = typedArray.getString(R.styleable.MyTextView_MyTextView_text);
+        mTextColor = typedArray.getColor(R.styleable.MyTextView_MyTextView_textColor, mTextColor);
+        mTextSize = typedArray.getDimensionPixelSize(R.styleable.MyTextView_MyTextView_textSize, mTextSize);
         typedArray.recycle();
 
-        //测量文字
-        Rect bounds = new Rect();
-        mPaint.getTextBounds(mText,0,mText.length(),bounds);
-        int width = bounds.width();
-        int height = bounds.height();
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setTextSize(sp2px(mTextSize));
+        mPaint.setColor(mTextColor);
 
-        //文字基线
-        Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
-        int dy = (fontMetricsInt.top - fontMetricsInt.bottom)/2 - fontMetricsInt.bottom;
-        int baseLine = getHeight()/2 + dy;
+        //setBackgroundColor(Color.TRANSPARENT);
+        //setWillNotDraw(false);
 
     }
 
@@ -71,28 +67,43 @@ public class MyTextView extends View {
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
-        int resultWidthSize = 100;
-        int resultHeightSize = 100;
+        int resultWidthSize = widthSize;
+        int resultHeightSize = heightSize;
+
+        //测量文字
+        Rect bounds = new Rect();
+        mPaint.getTextBounds(mText,0,mText.length(),bounds);
 
         if(widthMode == MeasureSpec.AT_MOST) {
-
-        }
-        if(widthMode == MeasureSpec.EXACTLY) {
-            resultWidthSize = widthSize;
+            resultWidthSize = bounds.width();
         }
 
         if(heightMode == MeasureSpec.AT_MOST) {
+            resultHeightSize = bounds.height();
+        }
 
-        }
-        if(heightMode == MeasureSpec.EXACTLY) {
-            resultHeightSize = heightSize;
-        }
+        //处理padding
+        resultWidthSize += (getPaddingLeft() + getPaddingRight());
+        resultHeightSize += (getPaddingTop() + getPaddingBottom());
+
         setMeasuredDimension(resultWidthSize, resultHeightSize);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        float baseLine = getHeight()/2 + getBaselineToCenterDistance(mPaint);
+        canvas.drawText(mText,getPaddingLeft(),baseLine,mPaint);
+    }
+
+    /**
+     * 计算绘制文字时的基线到中轴线的距离
+     * @param p
+     * @return 基线和centerY的距离
+     */
+    public static float getBaselineToCenterDistance(Paint p) {
+        Paint.FontMetrics fontMetrics = p.getFontMetrics();
+        return (fontMetrics.descent - fontMetrics.ascent) / 2 - fontMetrics.descent;
     }
 
 

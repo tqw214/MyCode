@@ -1,2 +1,2 @@
-include ':app', ':binderclient'
+include ':app', ':binderclient', ':customview'
 rootProject.name='MyCode'

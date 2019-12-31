@@ -1,5 +1,7 @@
 package com.viger.mycode.handle;
 
+import android.os.SystemClock;
+
 public class Handler {
 
     private Message message;
@@ -13,9 +15,14 @@ public class Handler {
 
 
     public void sendMessage(Message message) {
-        message.target = this;
-        messageQueue.enqueue(message);
+       sendMessageAtTime(message, 0);
     }
+
+    public void sendMessageAtTime(Message message, long delayMillis) {
+        message.target = this;
+        messageQueue.enqueueMessage(message, SystemClock.uptimeMillis() + delayMillis);
+    }
+
 
     public void dispatchMessage(Message msg) {
         handlerMessage(msg);

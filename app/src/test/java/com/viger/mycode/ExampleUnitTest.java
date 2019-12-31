@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,6 +14,10 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
+    ThreadLocal t;
+    Thread t1;
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
@@ -55,6 +60,22 @@ public class ExampleUnitTest {
         System.out.println(i);
         System.out.println(Integer.toBinaryString(i));
 
+    }
+
+    private void testMessageObtain() {
+
+        HashMap h;
+
+//        //private static Message sPool
+//            if (sPool != null) {
+//                Message m = sPool;
+//                sPool = m.next;
+//                m.next = null;
+//                m.flags = 0;
+//                sPoolSize--;
+//                return m;
+//            }
+//        //return new Message();
     }
 
     @CheckNet
