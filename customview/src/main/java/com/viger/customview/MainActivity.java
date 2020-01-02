@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.viger.customview.activity.CustomView01Activity;
+import com.viger.customview.activity.CustomView02Activity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_view01)
     Button btnView01;
+    @BindView(R.id.btn_view02)
+    Button btnView02;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(CustomView01Activity.class);
     }
 
+    @OnClick(R.id.btn_view02)
+    public void onViewClicked2() {
+        startActivity(CustomView02Activity.class);
+    }
+
     private void startActivity(Class clazz) {
-        Intent intent = new Intent(this ,clazz);
+        Intent intent = new Intent(this, clazz);
         startActivity(intent);
     }
+
 
 }
