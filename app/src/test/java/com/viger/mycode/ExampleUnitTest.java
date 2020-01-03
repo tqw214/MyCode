@@ -4,7 +4,10 @@ import org.junit.Test;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -127,6 +130,16 @@ public class ExampleUnitTest {
         String name;
         String value;
     }
+
+    @Test
+    public void test002() {
+        System.out.println(1<<1);
+        ArrayList list;
+        LinkedList ll;
+        ArrayDeque de;
+    }
+
+
 
 
 }
