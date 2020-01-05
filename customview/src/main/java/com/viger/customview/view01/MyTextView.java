@@ -1,4 +1,4 @@
-package com.viger.customview.view;
+package com.viger.customview.view01;
 
 import android.content.Context;
 import android.content.res.TypedArray;
