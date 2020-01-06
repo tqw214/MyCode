@@ -17,7 +17,7 @@ public class ColorTrackTextView extends TextView {
     private Paint mOriginPaint;  // 1. 实现一个文字两种颜色 - 绘制不变色字体的画笔
     private Paint mChangePaint; // 1. 实现一个文字两种颜色 - 绘制变色字体的画笔
 
-    private float mCurrentProgress = 0.5f; // 1. 实现一个文字两种颜色 - 当前的进度
+    private float mCurrentProgress = 0.0f; // 1. 实现一个文字两种颜色 - 当前的进度
     // 2.实现不同朝向
     private Direction mDirection = Direction.LEFT_TO_RIGHT;
 
@@ -73,6 +73,7 @@ public class ColorTrackTextView extends TextView {
         canvas.save();
         Rect rect = new Rect(start, 0, end, getHeight());
         canvas.clipRect(rect);
+        //canvas.clipRect()
         // 我们自己来画
         String text = getText().toString();
         Rect bounds = new Rect();

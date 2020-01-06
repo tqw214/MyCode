@@ -6,9 +6,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.viger.customview.view01.CustomView01Activity;
 import com.viger.customview.activity.CustomView02Activity;
-import com.viger.customview.view03.CustomView03Activity;
+import com.viger.customview.view01.CustomView01Activity;
+import com.viger.customview.view03.View03ViewPagerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_view03)
     public void onViewClicked3() {
-        startActivity(CustomView03Activity.class);
+        //startActivity(CustomView03Activity.class);
+        startActivity(View03ViewPagerActivity.class);
     }
 }

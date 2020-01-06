@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.viger.customview.view03.ColorTrackTextView
-        android:id="@+id/ctext"
+        android:id="@+id/color_track_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="测试文字的意义"
@@ -14,6 +14,18 @@
         app:changeColor="#f00"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:text="左到右"
+        android:onClick="leftToRight"
+        android:layout_height="wrap_content" />
 
 
-</RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:text="右到左"
+        android:onClick="rightToLeft"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

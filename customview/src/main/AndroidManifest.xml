@@ -18,6 +18,7 @@
         <activity android:name=".view01.CustomView01Activity"/>
         <activity android:name=".activity.CustomView02Activity"/>
         <activity android:name=".view03.CustomView03Activity"/>
+        <activity android:name=".view03.View03ViewPagerActivity"/>
     </application>
 
 </manifest>
