@@ -4,11 +4,14 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.viger.mycode.base.BaseActivity;
+import com.viger.mycode.glide.Glide;
+import com.viger.mycode.glide.GlideException;
+import com.viger.mycode.glide.RequestListener;
 import com.viger.mycode.myglide.MyGlideActivity;
 import com.viger.mycode.retrofit.Api;
 import com.viger.mycode.utils.CheckNet;
@@ -47,6 +53,12 @@ public class MainActivity extends BaseActivity {
     public TextView mTextView;
     private Unbinder bind;
 
+    @BindView(R.id.imageView)
+    ImageView imageView;
+
+    @BindView((R.id.btn))
+    Button btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +78,28 @@ public class MainActivity extends BaseActivity {
         //startActivityForBase(MainActivity.class);
         //startActivityForBase2(Activity.class);
 
+        Glide
+                .with(this)
+                .load("https://www.baidu.com/img/bd_logo1.png")
+                .placeholder(R.mipmap.ic_launcher)
+                .listener(new RequestListener() {
+                    @Override
+                    public void onResourceReady(Bitmap bitmap) {
+
+                    }
+
+                    @Override
+                    public void onLoadFailed(GlideException e) {
+
+                    }
+                })
+                .into(imageView);
+
+    }
+
+    @OnClick(R.id.btn)
+    public void clickStop(View v) {
+        Glide.with(this).stop();
     }
 
     @OnClick(R.id.tv)
