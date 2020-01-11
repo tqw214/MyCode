@@ -22,8 +22,11 @@ public class RetrofitManager {
     }
 
     public static ServiceApi getApi() {
+
         return getRetrofit().create(ServiceApi.class);
     }
+
+
 
 
 

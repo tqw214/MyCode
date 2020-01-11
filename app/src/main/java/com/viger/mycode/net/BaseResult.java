@@ -30,4 +30,9 @@ public class BaseResult<T> {
         this.data = data;
     }
 
+    public boolean isOk() {
+        return code == 200;
+    }
+
+
 }
