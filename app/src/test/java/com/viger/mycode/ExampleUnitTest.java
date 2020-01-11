@@ -1,5 +1,7 @@
 package com.viger.mycode;
 
+import android.os.MessageQueue;
+
 import org.junit.Test;
 
 import java.io.File;
@@ -8,6 +10,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import static org.junit.Assert.assertEquals;
 
@@ -133,6 +136,9 @@ public class ExampleUnitTest {
 
     @Test
     public void test002() {
+        ThreadPoolExecutor threadPoolExecutor;
+        MessageQueue messageQueue;
+        ThreadLocal local;
         System.out.println(1<<1);
         ArrayList list;
         LinkedList ll;
