@@ -11,6 +11,8 @@ public abstract class Observable<T> implements ObservableSource<T> {
         return observableJust;
     }
 
+    @Override
+    public void subscribe(Observer<T> observer) {
 
-
+    }
 }
