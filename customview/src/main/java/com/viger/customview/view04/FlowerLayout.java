@@ -132,14 +132,14 @@ public class FlowerLayout extends ViewGroup {
                 MarginLayoutParams params = (MarginLayoutParams) view.getLayoutParams();
                 left = currentLef + params.leftMargin;
                 top = currentTop + params.topMargin;
-                right = left + view.getMeasuredWidth() + params.rightMargin;
-                bottom = top + view.getMeasuredHeight() + params.bottomMargin;
+                right = left + view.getMeasuredWidth();
+                bottom = top + view.getMeasuredHeight();
                 view.layout(left, top, right, bottom);
                 currentLef += view.getMeasuredWidth() + params.leftMargin + params.rightMargin;
             }
             currentLef = 0;
             currentTop += listLineHeight.get(i);
         }
-        listLineView.clear();
+        //listLineView.clear();
     }
 }

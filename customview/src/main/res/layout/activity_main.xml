@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.viger.customview.view.MyTextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="#ccc"
+        android:text="适配文字"/>
+
     <Button
         android:id="@+id/btn_view01"
         android:layout_width="match_parent"
