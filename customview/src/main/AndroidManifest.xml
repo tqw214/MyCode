@@ -22,6 +22,7 @@
         <activity android:name=".view03.View03ViewPagerActivity" />
         <activity android:name=".view04.View04Activity" />
         <activity android:name=".view05.View05Activity"/>
+        <activity android:name=".view06.View06Activity"/>
     </application>
 
 </manifest>

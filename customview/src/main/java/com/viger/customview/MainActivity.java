@@ -11,6 +11,7 @@ import com.viger.customview.view01.CustomView01Activity;
 import com.viger.customview.view03.View03ViewPagerActivity;
 import com.viger.customview.view04.View04Activity;
 import com.viger.customview.view05.View05Activity;
+import com.viger.customview.view06.View06Activity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     Button btnView04;
     @BindView(R.id.btn_view05)
     Button btnView05;
+
+    @BindView(R.id.btn_view06)
+    Button btnView06;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked5() {
         //startActivity(CustomView03Activity.class);
         startActivity(View05Activity.class);
+    }
+
+    @OnClick(R.id.btn_view06)
+    public void onViewClicked6() {
+        startActivity(View06Activity.class);
     }
 
 }
