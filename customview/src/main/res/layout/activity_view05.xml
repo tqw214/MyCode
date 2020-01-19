@@ -21,6 +21,15 @@
 <!--    android:layout_width="match_parent"-->
 <!--    android:layout_height="100dp"/>-->
 
+    <com.viger.customview.view05.RatingBar
+        android:id="@+id/ratingBar"
+        app:gradeNumber="5"
+        android:padding="5dp"
+        app:starNormal="@drawable/star_normal"
+        app:starFocus="@drawable/star_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 
 
 </LinearLayout>
