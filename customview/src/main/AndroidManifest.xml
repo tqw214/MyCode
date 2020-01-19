@@ -12,14 +12,16 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view01.CustomView01Activity"/>
-        <activity android:name=".activity.CustomView02Activity"/>
-        <activity android:name=".view03.CustomView03Activity"/>
-        <activity android:name=".view03.View03ViewPagerActivity"/>
-        <activity android:name=".view04.View04Activity"/>
+        <activity android:name=".view01.CustomView01Activity" />
+        <activity android:name=".activity.CustomView02Activity" />
+        <activity android:name=".view03.CustomView03Activity" />
+        <activity android:name=".view03.View03ViewPagerActivity" />
+        <activity android:name=".view04.View04Activity" />
+        <activity android:name=".view05.View05Activity"/>
     </application>
 
 </manifest>

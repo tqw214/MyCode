@@ -35,5 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="流式布局" />
+    <Button
+        android:id="@+id/btn_view05"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="圆形进度条" />
 
 </LinearLayout>
