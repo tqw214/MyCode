@@ -51,12 +51,73 @@ public class LetterSideBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        int itemHeight = (getHeight()-getPaddingTop()-getPaddingBottom())/mLetters.length;
+        for(int i=0;i<mLetters.length;i++) {
+            int centerY = i * itemHeight + itemHeight/2 + getPaddingTop();
+            Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
+            int base = (fontMetricsInt.bottom-fontMetricsInt.top)/2-fontMetricsInt.bottom;
+            int dy = centerY + base;
+            int textWidth = (int) mPaint.measureText(mLetters[i]);
+            int centerX = getWidth()/2-textWidth/2;
+            canvas.drawText(mLetters[i], centerX, dy , mPaint);
+            if(mLetters[i].equals(mCurrentTouchLetter)) {
+                mPaint.setColor(Color.RED);
+                canvas.drawText(mLetters[i], centerX, dy , mPaint);
+            }else {
+                mPaint.setColor(Color.BLUE);
+                canvas.drawText(mLetters[i], centerX, dy , mPaint);
+            }
+        }
 
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                float y = event.getY();
+                checkLetterIsChoose(y);
+                break;
+            case MotionEvent.ACTION_UP:
+                setBackgroundColor(Color.parseColor("#eeeeee"));
+//                if (mListener != null) {
+//                    mListener.touch(mCurrentTouchLetter, false);
+//                }
+                mCurrentTouchLetter = "";
+                invalidate();
+                break;
+        }
+        return true;
+    }
+
+    private void checkLetterIsChoose(float y) {
+        int itemHeight = (getHeight()-getPaddingTop()-getPaddingBottom())/mLetters.length;
+            int currentPosition = (int) (y / itemHeight);
+            if (currentPosition < 0)
+                currentPosition = 0;
+            if (currentPosition > mLetters.length - 1)
+                currentPosition = mLetters.length - 1;
+            mCurrentTouchLetter = mLetters[currentPosition];
+            if (mListener != null) {
+                mListener.touch(mCurrentTouchLetter, true);
+            }
+            // 重新绘制
+            invalidate();
+    }
+
+
+
+    private LetterTouchListener mListener;
+
+    public void setOnLetterTouchListener(LetterTouchListener listener) {
+        this.mListener = listener;
+    }
+
+    // 接口回掉其他View会不会使用？
+    public interface LetterTouchListener {
+        void touch(CharSequence letter, boolean isTouch);
     }
 
 }
