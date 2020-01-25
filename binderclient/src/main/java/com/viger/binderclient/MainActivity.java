@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,10 +33,29 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private MyView myView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myView = findViewById(R.id.myView);
+
+        myView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.d("tag", "MyView:onTouch:" + event.getAction());
+                return false;
+            }
+        });
+
+        myView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "MyView:onClick:");
+            }
+        });
 
         Intent intent = new Intent();
         intent.setAction("com.viger.mycode.userinfo.aidl");
@@ -52,5 +73,17 @@ public class MainActivity extends AppCompatActivity {
             }
         },3000);
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.d("tag", "MainActivity:dispatchTouchEvent:"+ev.getAction());
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.d("tag", "MainActivity:onTouchEvent:"+event.getAction());
+        return super.onTouchEvent(event);
     }
 }
