@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,9 +25,11 @@ public class SlidingMenu extends HorizontalScrollView {
 
     private View mContentView,mMenuView;
 
-    private GestureDetector gestureDetector;
+    private GestureDetector mGestureDetector;
 
     private ViewDragHelper viewDragHelper;
+
+    private boolean mMenuIsOpen = false;  // 当前是否打开
 
     public SlidingMenu(Context context) {
         this(context, null);
@@ -42,6 +45,39 @@ public class SlidingMenu extends HorizontalScrollView {
         float rightMargin = typedValue.getDimension(R.styleable.SlidingMenu_menuRightMargin, DisplayUtils.dp2px(context, 50));
         mMenuWidth = (int) (getScreenWidth(context) - rightMargin);
         typedValue.recycle();
+        mGestureDetector = new GestureDetector(context, new GestureDetectorListener());
+    }
+
+
+    private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            Log.e("TAG", "velocityX -> " + velocityX);// 向右快速滑动会是正的  +   向左快速滑动 是  -
+
+            // 如果菜单是打开的   向右向左快速滑动都会回调这个方法
+            if (mMenuIsOpen) {
+                if (velocityX < 0) {
+                    toggleMenu();
+                    return true;
+                }
+            } else {
+                if (velocityX > 0) {
+                    toggleMenu();
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    // 切换菜单
+    private void toggleMenu(){
+        if(mMenuIsOpen){
+            closeMenu();
+        }else{
+            openMenu();
+        }
     }
 
     @Override
@@ -93,6 +129,11 @@ public class SlidingMenu extends HorizontalScrollView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        // 拦截处理事件
+        if(mGestureDetector.onTouchEvent(ev)) {
+            return mGestureDetector.onTouchEvent(ev);
+        }
+
         int action = ev.getAction();
         //Log.d("tag","getScrollX = " + getScrollX());
         if(action == MotionEvent.ACTION_UP) {
