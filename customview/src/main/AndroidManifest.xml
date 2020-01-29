@@ -10,11 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view01.CustomView01Activity" />
         <activity android:name=".activity.CustomView02Activity" />
@@ -23,6 +19,12 @@
         <activity android:name=".view04.View04Activity" />
         <activity android:name=".view05.View05Activity"/>
         <activity android:name=".view06.View06Activity"/>
+        <activity android:name=".view07.View07Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
