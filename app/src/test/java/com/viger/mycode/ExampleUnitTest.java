@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import okhttp3.internal.cache.DiskLruCache;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -23,6 +25,8 @@ public class ExampleUnitTest {
 
     ThreadLocal t;
     Thread t1;
+
+    DiskLruCache diskLruCache;
 
     @Test
     public void addition_isCorrect() {
