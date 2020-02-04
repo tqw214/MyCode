@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import com.viger.mycode.glide.RequestListener;
 import com.viger.mycode.myglide.MyGlideActivity;
 import com.viger.mycode.retrofit.Api;
 import com.viger.mycode.utils.CheckNet;
+import com.viger.mycode.utils.HandlerUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,7 +45,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements HandlerUtils.OnHandlerCallBack {
 
     //private Button btn_myglide;
     //private Disposable disposable;
@@ -95,6 +97,20 @@ public class MainActivity extends BaseActivity {
                 })
                 .into(imageView);
 
+        new Thread(){
+            @Override
+            public void run() {
+                Message message = Message.obtain();
+                message.obj = "123";
+                HandlerUtils.getInstance(MainActivity.this).setCallBack(MainActivity.this).getHandler().sendMessage(message);
+            }
+        }.start();
+
+    }
+
+    @Override
+    public void onResult(Message msg) {
+        Toast.makeText(this, msg.obj.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.btn)
@@ -206,4 +222,6 @@ public class MainActivity extends BaseActivity {
         //stopService(intent);
         bind.unbind();
     }
+
+
 }

@@ -1,9 +1,12 @@
 package com.viger.mvp;
 
 import android.content.Context;
+import android.widget.ImageView;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import com.bumptech.glide.Glide;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,5 +26,12 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("com.viger.mvp", appContext.getPackageName());
+        ImageView imageView = null;
+        Glide.with(appContext)
+                .load("")
+                .placeholder(R.mipmap.ic_launcher)
+                .centerCrop()
+                .override(100,100)
+                .into(imageView);
     }
 }
