@@ -3,6 +3,10 @@ package com.viger.mycode;
 
 import android.graphics.Bitmap;
 
+import com.viger.mycode.rxjava.Disposeble;
+import com.viger.mycode.rxjava.ObservableEmitter;
+import com.viger.mycode.rxjava.ObservableOnSubscribe;
+
 import org.junit.Test;
 
 import io.reactivex.Observable;
@@ -106,6 +110,38 @@ public class RxJavaTet {
 
             @Override
             public void onComplete() {
+            }
+        });
+    }
+
+    @Test
+    public void testMyRxJava(){
+        com.viger.mycode.rxjava.Observable observable = com.viger.mycode.rxjava.Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                emitter.onNext("666");
+                emitter.onComplete();
+            }
+        });
+        observable.subscribe(new com.viger.mycode.rxjava.Observer<String>() {
+            @Override
+            public void onSubscribe(Disposeble d) {
+                System.out.println("onSubscribe===>");
+            }
+
+            @Override
+            public void onNext(String o) {
+                System.out.println("onNext===>" + o);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                System.out.println("onComplete===>");
             }
         });
     }
