@@ -10,34 +10,34 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaTet {
 
     @Test
     public void test01(){
-        Observable.just("https://www.baidu.com/img/bd_logo1.png")
-                .map(new Function<String, Bitmap>() {
-                    @Override
-                    public Bitmap apply(String url) throws Exception {
-                        return getBitmapFromServer(url);
-                    }
-                })
-                .map(new Function<Bitmap, Bitmap>() {
-                    @Override
-                    public Bitmap apply(Bitmap bitmap) throws Exception {
-                        return createSyBitmap(bitmap);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Bitmap>() {
-                    @Override
-                    public void accept(Bitmap bitmap) throws Exception {
-                        //show bitmap
-                    }
-                });
+//        Observable.just("https://www.baidu.com/img/bd_logo1.png")
+//                .map(new Function<String, Bitmap>() {
+//                    @Override
+//                    public Bitmap apply(String url) throws Exception {
+//                        return getBitmapFromServer(url);
+//                    }
+//                })
+//                .map(new Function<Bitmap, Bitmap>() {
+//                    @Override
+//                    public Bitmap apply(Bitmap bitmap) throws Exception {
+//                        return createSyBitmap(bitmap);
+//                    }
+//                })
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Bitmap>() {
+//                    @Override
+//                    public void accept(Bitmap bitmap) throws Exception {
+//                        //show bitmap
+//                    }
+//                });
 
     }
 
@@ -48,6 +48,8 @@ public class RxJavaTet {
     private Bitmap getBitmapFromServer(String url) {
 
         Observable.just("")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -72,5 +74,41 @@ public class RxJavaTet {
 
         return null;
     }
+
+    @Test
+    public void test() {
+        Observable.just(1,2,3,4)
+                .all(new Predicate<Integer>() {
+                    @Override
+                    public boolean test(Integer integer) throws Exception {
+                        return false;
+                    }
+                }).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) throws Exception {
+
+            }
+        });
+
+        Observable.just(1).subscribe(new Observer<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                System.out.println("just===" + integer);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
 
 }
