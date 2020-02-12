@@ -26,10 +26,8 @@ public class FruitActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recyclerview);
+        //setContentView(R.layout.activity_recyclerview);
         fruitAdapter = new FruitAdapter(this, fruitList);
-
-        recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(fruitAdapter);

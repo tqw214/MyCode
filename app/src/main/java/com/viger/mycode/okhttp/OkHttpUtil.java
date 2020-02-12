@@ -34,6 +34,11 @@ public class OkHttpUtil {
     private static final byte[] LOCKER = new byte[0];
     private static OkHttpUtil mInstance;
     private OkHttpClient mOkHttpClient;
+    private LoggingInterceptor loggingInterceptor;
+
+
+    private void test(){
+    }
 
     /**
      * 自定义网络回调接口
@@ -57,6 +62,9 @@ public class OkHttpUtil {
                 return true;
             }
         });
+        loggingInterceptor = new LoggingInterceptor();
+        ClientBuilder.addNetworkInterceptor(loggingInterceptor);
+        ClientBuilder.addInterceptor(loggingInterceptor);
         mOkHttpClient = ClientBuilder.build();
     }
 
