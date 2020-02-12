@@ -5,6 +5,7 @@ public class TestBean {
     private String name = "myname";
 
     private TestBean() {
+       /// System.arraycopy();
         System.out.println("TestBean()===>");
     }
 
