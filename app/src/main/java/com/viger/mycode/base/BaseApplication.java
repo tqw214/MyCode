@@ -7,11 +7,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.viger.mycode.utils.UIAdapter;
+
 public class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        UIAdapter.getInstance().init(this);
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override

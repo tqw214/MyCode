@@ -62,14 +62,14 @@ public class RxBus {
         }
     }
 
-    private void callMethodByAnnotation(Object subscribe, Object data) {
-        Method[] declaredMethods = subscribe.getClass().getDeclaredMethods();
+    private void callMethodByAnnotation(Object target, Object data) {
+        Method[] declaredMethods = target.getClass().getDeclaredMethods();
         for(Method method : declaredMethods) {
             RegisterRxBus annotation = method.getAnnotation(RegisterRxBus.class);
             Class<?> parameterType = method.getParameterTypes()[0];
             if(annotation != null && data.getClass().getName().equals(parameterType.getName())) {
                 try {
-                    method.invoke(subscribe,data);
+                    method.invoke(target,new Object[]{data});
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {

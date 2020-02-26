@@ -27,6 +27,7 @@ import com.viger.mycode.glide.RequestListener;
 import com.viger.mycode.myglide.MyGlideActivity;
 import com.viger.mycode.retrofit.Api;
 import com.viger.mycode.utils.CheckNet;
+import com.viger.mycode.utils.Density;
 import com.viger.mycode.utils.HandlerUtils;
 
 import java.io.File;
@@ -65,6 +66,7 @@ public class MainActivity extends BaseActivity implements HandlerUtils.OnHandler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Density.setDensity(this);
         setContentView(R.layout.activity_main);
         //ViewUtils.inject(this);
         //btn_myglide = findViewById(R.id.btn_myglide);
