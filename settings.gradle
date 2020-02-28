@@ -1,2 +1,2 @@
-include ':app', ':binderclient', ':customview', ':mvp', ':mvp'
+include ':app', ':binderclient', ':customview', ':mvp', ':mvp', ':gradledemo'
 rootProject.name='MyCode'
