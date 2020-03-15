@@ -16,7 +16,7 @@ public class SignUtils {
     public static void getSingInfo(Context context) {
         try {
             PackageInfo packageInfo = context.getApplicationContext().getPackageManager().getPackageInfo(
-                    "应用包名", PackageManager.GET_SIGNATURES);
+                    context.getPackageName(), PackageManager.GET_SIGNATURES);
             Signature[] signs = packageInfo.signatures;
             Signature sign = signs[0];
             parseSignature(sign.toByteArray());
@@ -37,6 +37,19 @@ public class SignUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String getSignInfo2(Context context) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), PackageManager.GET_SIGNATURES);
+            Signature[] signs = packageInfo.signatures;
+            Signature sign = signs[0];
+            return sign.toCharsString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 }
