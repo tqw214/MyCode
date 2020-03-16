@@ -18,6 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ *  * 此工具类源于stack over flow
+ *  * 原文链接:http://stackoverflow.com/questions/8692328/causing-outofmemoryerror-in-frame-by-frame-animation-in-android
+ *  * 主要使用了BitmapFactory.decodeByteArray方法通过底层C来绘制图片,有效防止OOM
+ *  * 使用了第三方类库:org.apache.commons.io.IOUtils,将Inputstream转为byte字节数组
+ *
  * 处理帧动画oom问题
  *
  * MyAnimationDrawable.animateRawManuallyFromXML(R.drawable.anim_search,

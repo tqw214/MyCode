@@ -29,6 +29,7 @@ import com.viger.mycode.retrofit.Api;
 import com.viger.mycode.utils.CheckNet;
 import com.viger.mycode.utils.Density;
 import com.viger.mycode.utils.HandlerUtils;
+import com.viger.mycode.utils.ToastUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -102,9 +103,10 @@ public class MainActivity extends BaseActivity implements HandlerUtils.OnHandler
         new Thread(){
             @Override
             public void run() {
-                Message message = Message.obtain();
-                message.obj = "123";
-                HandlerUtils.getInstance(MainActivity.this).setCallBack(MainActivity.this).getHandler().sendMessage(message);
+//                Message message = Message.obtain();
+//                message.obj = "123";
+//                HandlerUtils.getInstance(MainActivity.this).setCallBack(MainActivity.this).getHandler().sendMessage(message);
+                ToastUtil.showLong(MainActivity.this, "ahhahha");
             }
         }.start();
 
@@ -117,7 +119,8 @@ public class MainActivity extends BaseActivity implements HandlerUtils.OnHandler
 
     @OnClick(R.id.btn)
     public void clickStop(View v) {
-        Glide.with(this).stop();
+        //Glide.with(this).stop();
+        ToastUtil.showLong(MainActivity.this, "aaaaa66");
     }
 
     @OnClick(R.id.tv)
