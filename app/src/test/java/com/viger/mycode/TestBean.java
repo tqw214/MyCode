@@ -12,7 +12,7 @@ public class TestBean {
     }
 
     public String getName() {
-        return "bbb";
+        return "bbb";// test
     }
 
     private int getAge() {
