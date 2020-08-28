@@ -1,2 +1,3 @@
+include ':materialedittext'
 include ':app', ':binderclient', ':customview', ':mvp', ':mvp', ':gradledemo'
 rootProject.name='MyCode'
