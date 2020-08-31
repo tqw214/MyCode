@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/gradledemo" />
             <option value="$PROJECT_DIR$/materialedittext" />
             <option value="$PROJECT_DIR$/mvp" />
+            <option value="$PROJECT_DIR$/view" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
