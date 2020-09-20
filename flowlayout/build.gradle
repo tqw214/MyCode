@@ -1,20 +1,11 @@
 apply plugin: 'com.android.application'
 
-class MyDemo implements Plugin<Project> {
-    @Override
-    void apply(Project target) {
-        println "========================================================================>"
-    }
-}
-
-apply plugin: MyDemo
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.viger.view"
+        applicationId "com.viger.flowlayout"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
